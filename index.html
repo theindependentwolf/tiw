@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="flex flex-col h-screen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Independent Wolf</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .centered-flex { display: flex; justify-content: center; align-items: center; }
+        .logo { height: 50px; } /* Adjust logo size as needed */
+    </style>
+    <script>
+        function toggleMenu() {
+            document.getElementById('navbar').classList.toggle('hidden');
+        }
+    </script>    
+</head>
+<body class="bg-white text-gray-800">
+
+    <nav class="bg-gray-800 text-white p-4 relative">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="logo.png" alt="Logo" class="logo mr-3">
+                <span class="font-bold text-lg">The Independent Wolf</span>
+            </a>
+            <button class="lg:hidden" onclick="toggleMenu()">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+            <div id="navbar" class="hidden lg:flex flex-col lg:flex-row lg:items-center absolute lg:relative top-full right-0 bg-slate-800 lg:bg-transparent w-full lg:w-auto">
+                <a href="#about" class="px-2 py-1 hover:text-gray-300">About</a>
+                <a href="#services" class="px-2 py-1 hover:text-gray-300">Services</a>
+                <a href="#projects" class="px-2 py-1 hover:text-gray-300">Projects</a>
+                <a href="#contact" class="px-2 py-1 hover:text-gray-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Me Section -->
+    <section id="about" class="p-6 bg-white text-center">
+        <div class="container mx-auto w-full lg:w-2/5">
+            <h1 class="text-4xl font-bold text-slate-800 mb-4">About Me</h1>
+            <p class="text-lg mb-4">I bring over 10 years of experience in the software industry, working in variety of roles like backend and full-stack development, DevOps, cloud security, and systems/infrastructure engineering. This experience has given me a solid understanding of different tools and languages, and a practical approach to building applications that are robust, efficient, secure, and user-friendly.</p>
+            <!-- Add more content about yourself here -->
+        </div>
+    </section>
+
+    <!-- Services Offered Section -->
+    <section id="services" class="p-6 bg-white text-center">
+        <div class="container mx-auto flex justify-center">
+            <div>
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Services Offered</h2>
+                <ul class="list-disc text-left">
+                    <li>Custom Web Development</li>
+                    <li>Workflow and Infrastructure Automation</li>
+                    <li>AWS Cloud Security Consulting</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="p-6 bg-white text-center">
+        <div class="container mx-auto w-full lg:w-2/5">
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">Projects</h2>
+            Most of my works have been for my employers or clients but I have recently taken an accute interest in working on my personal projects. I will update this section shortly.
+            <!-- <a href="projects.html" class="text-blue-500 hover:text-slate-800">View Projects</a> -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="p-6 bg-white text-center">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">Contact</h2>
+            <p>If you want to hire me, you can email me at <a href="mailto:info@theindependentwolf.com" class="text-blue-500 hover:text-slate-800">info@theindependentwolf.com</a></p>
+        </div>
+    </section>
+
+</body>
+</html>
