@@ -6,45 +6,65 @@
     <title>The Independent Wolf</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .hero-pattern {
-            background-color: #1a365d;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero-text {
+            background: linear-gradient(to right, #1a1a1a, #4a4a4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
     <script>
         function toggleMenu() {
             document.getElementById('navbar').classList.toggle('hidden');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+        });
     </script>    
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-white text-gray-900">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm">
-        <div class="container mx-auto px-4 py-3">
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
+        <div class="max-w-[980px] mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center space-x-3">
-                    <img src="logo.png" alt="Logo" class="h-10 w-auto">
-                    <span class="font-bold text-xl text-slate-800">The Independent Wolf</span>
+                    <img src="logo.png" alt="Logo" class="h-8 w-auto">
                 </a>
                 <button class="lg:hidden" onclick="toggleMenu()">
-                    <svg class="h-6 w-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    <svg class="h-6 w-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
-                <div id="navbar" class="hidden lg:flex absolute lg:relative top-full left-0 right-0 bg-white lg:bg-transparent w-full lg:w-auto mt-2 lg:mt-0 shadow-lg lg:shadow-none">
+                <div id="navbar" class="hidden lg:flex absolute lg:relative top-full left-0 right-0 bg-white/80 backdrop-blur-xl lg:bg-transparent w-full lg:w-auto border-b lg:border-0 border-gray-200">
                     <div class="flex flex-col lg:flex-row lg:items-center space-y-2 lg:space-y-0 lg:space-x-8 p-4 lg:p-0">
-                        <a href="#about" class="text-slate-600 hover:text-slate-900 font-medium">About</a>
-                        <a href="#services" class="text-slate-600 hover:text-slate-900 font-medium">Services</a>
-                        <a href="#projects" class="text-slate-600 hover:text-slate-900 font-medium">Projects</a>
-                        <a href="#contact" class="text-slate-600 hover:text-slate-900 font-medium">Contact</a>
+                        <a href="#about" class="text-sm text-gray-900 hover:text-gray-500 transition-colors duration-300">About</a>
+                        <a href="#services" class="text-sm text-gray-900 hover:text-gray-500 transition-colors duration-300">Services</a>
+                        <a href="#projects" class="text-sm text-gray-900 hover:text-gray-500 transition-colors duration-300">Projects</a>
+                        <a href="#contact" class="text-sm text-gray-900 hover:text-gray-500 transition-colors duration-300">Contact</a>
                     </div>
                 </div>
             </div>
@@ -52,150 +72,142 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-pattern min-h-screen flex items-center pt-16">
-        <div class="container mx-auto px-4 py-16">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Software Engineer & Security Expert</h1>
-                <p class="text-xl text-blue-100 mb-8">Building robust, efficient, and secure applications</p>
-                <a href="#contact" class="inline-block bg-white text-slate-800 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-300">Get in Touch</a>
+    <section class="pt-32 pb-20 overflow-hidden">
+        <div class="max-w-[980px] mx-auto px-4">
+            <div class="text-center">
+                <h1 class="hero-text text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight mb-6 fade-in">Engineering Efficiency, Automating Success</h1>
+                <p class="text-xl md:text-2xl text-gray-500 mb-12 fade-in">Turning complex challenges into seamless digital solutions.
+
+                </p>
+                <a href="#contact" class="inline-block bg-gray-900 text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-300 fade-in">Get in Touch</a>
             </div>
         </div>
     </section>
 
     <!-- About Me Section -->
-    <section id="about" class="py-20">
-        <div class="container mx-auto px-4">
+    <section id="about" class="py-32 bg-gray-50">
+        <div class="max-w-[980px] mx-auto px-4">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-4xl font-bold text-slate-800 mb-8 text-center">About Me</h2>
-                <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <p class="text-lg text-gray-600 leading-relaxed">
-                        I bring over 10 years of experience in the software industry, working in variety of roles like backend and full-stack development, DevOps, cloud security, and systems/infrastructure engineering. This experience has given me a solid understanding of different tools and languages, and a practical approach to building applications that are robust, efficient, secure, and user-friendly.
-                    </p>
-                </div>
+                <h2 class="text-4xl font-semibold text-gray-900 mb-8 text-center fade-in">About Me</h2>
+                <p class="text-xl leading-relaxed text-gray-500 fade-in">
+                    I bring over 10 years of experience in the software industry, working in variety of roles like backend and full-stack development, DevOps, cloud security, and systems/infrastructure engineering. This experience has given me a solid understanding of different tools and languages, and a practical approach to building applications that are robust, efficient, secure, and user-friendly.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-slate-800 mb-12 text-center">Services Offered</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+    <section id="services" class="py-32">
+        <div class="max-w-[980px] mx-auto px-4">
+            <h2 class="text-4xl font-semibold text-gray-900 mb-16 text-center fade-in">Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="fade-in">
+                    <div class="mb-6">
+                        <svg class="w-10 h-10 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Custom Web Development</h3>
-                    <p class="text-gray-600">Building modern, responsive web applications tailored to your needs.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Custom Web Development</h3>
+                    <p class="text-gray-500">Building modern, responsive web applications tailored to your needs.</p>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                <div class="fade-in">
+                    <div class="mb-6">
+                        <svg class="w-10 h-10 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Workflow Automation</h3>
-                    <p class="text-gray-600">Streamlining processes and infrastructure for maximum efficiency.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Workflow Automation</h3>
+                    <p class="text-gray-500">Streamlining processes and infrastructure for maximum efficiency.</p>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <div class="fade-in">
+                    <div class="mb-6">
+                        <svg class="w-10 h-10 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Cloud Security</h3>
-                    <p class="text-gray-600">Expert consulting for AWS and Azure cloud security solutions.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Cloud Security</h3>
+                    <p class="text-gray-500">Expert consulting for AWS and Azure cloud security solutions.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-slate-800 mb-8 text-center">Projects</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+    <section id="projects" class="py-32 bg-gray-50">
+        <div class="max-w-[980px] mx-auto px-4">
+            <h2 class="text-4xl font-semibold text-gray-900 mb-6 text-center fade-in">Projects</h2>
+            <p class="text-center text-gray-500 mb-16 max-w-2xl mx-auto fade-in">
                 Most of my work has been building internal tools and solutions for corporations. I'm now expanding into personal projects and will update this section with more projects soon.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Swiss Army Dev -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="aspect-video bg-gray-200 relative">
-                        <img src="https://placehold.co/600x400/1a365d/ffffff?text=Swiss+Army+Dev" alt="Swiss Army Dev Preview" class="w-full h-full object-cover">
+                <div class="group cursor-pointer fade-in">
+                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-6">
+                        <img src="https://placehold.co/600x400/1a1a1a/ffffff?text=Swiss+Army+Dev" alt="Swiss Army Dev Preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">Swiss Army Dev</h3>
-                        <p class="text-gray-600 mb-4">A comprehensive developer toolkit website offering various coding utilities and resources.</p>
-                        <a href="https://swissarmydev.com" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                            Visit Site
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Swiss Army Dev</h3>
+                    <p class="text-gray-500 mb-4">A comprehensive developer toolkit website offering various coding utilities and resources.</p>
+                    <a href="https://swissarmydev.com" target="_blank" class="inline-flex items-center text-gray-900 font-medium group">
+                        <span class="group-hover:underline">Visit Site</span>
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
                 </div>
 
                 <!-- Distance by Jetpack -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="aspect-video bg-gray-200 relative">
-                        <img src="https://placehold.co/600x400/1a365d/ffffff?text=Distance+by+Jetpack" alt="Distance by Jetpack Preview" class="w-full h-full object-cover">
+                <div class="group cursor-pointer fade-in">
+                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-6">
+                        <img src="https://placehold.co/600x400/1a1a1a/ffffff?text=Distance+by+Jetpack" alt="Distance by Jetpack Preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">Distance by Jetpack</h3>
-                        <p class="text-gray-600 mb-4">A distance calculation and route planning application for travelers and adventurers.</p>
-                        <a href="https://distancebyjetpack.com" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                            Visit Site
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Distance by Jetpack</h3>
+                    <p class="text-gray-500 mb-4">A distance calculation and route planning application for travelers and adventurers.</p>
+                    <a href="https://distancebyjetpack.com" target="_blank" class="inline-flex items-center text-gray-900 font-medium group">
+                        <span class="group-hover:underline">Visit Site</span>
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
                 </div>
 
                 <!-- Cybereus -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="aspect-video bg-gray-200 relative">
-                        <img src="https://placehold.co/600x400/1a365d/ffffff?text=Cybereus" alt="Cybereus Preview" class="w-full h-full object-cover">
+                <div class="group cursor-pointer fade-in">
+                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-6">
+                        <img src="https://placehold.co/600x400/1a1a1a/ffffff?text=Cybereus" alt="Cybereus Preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">Cybereus</h3>
-                        <p class="text-gray-600 mb-4">A cybersecurity platform providing tools and resources for digital security.</p>
-                        <a href="https://cybereus.com" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                            Visit Site
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-bold text-slate-800 mb-8">Get in Touch</h2>
-                <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
-                    <p class="text-lg text-gray-600 mb-6">Ready to start a project or have any questions?</p>
-                    <a href="mailto:info@theindependentwolf.com" class="inline-flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 w-full sm:w-auto">
-                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Cybereus</h3>
+                    <p class="text-gray-500 mb-4">A cybersecurity platform providing tools and resources for digital security.</p>
+                    <a href="https://cybereus.com" target="_blank" class="inline-flex items-center text-gray-900 font-medium group">
+                        <span class="group-hover:underline">Visit Site</span>
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
-                        <span class="text-sm sm:text-base">info@theindependentwolf.com</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-32">
+        <div class="max-w-[980px] mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-4xl font-semibold text-gray-900 mb-6 fade-in">Let's Create Something Together</h2>
+                <p class="text-xl text-gray-500 mb-8 fade-in">Ready to start a project or have any questions?</p>
+                <a href="mailto:info@theindependentwolf.com" class="inline-flex items-center justify-center space-x-2 bg-gray-900 text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 fade-in">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>info@theindependentwolf.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="py-8 bg-slate-900 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-gray-400">&copy; 2024 The Independent Wolf. All rights reserved.</p>
+    <footer class="py-8 border-t border-gray-200">
+        <div class="max-w-[980px] mx-auto px-4 text-center">
+            <p class="text-sm text-gray-500">&copy; 2024 The Independent Wolf. All rights reserved.</p>
         </div>
     </footer>
 </body>
