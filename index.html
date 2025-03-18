@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="flex flex-col h-screen">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Independent Wolf</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .centered-flex { display: flex; justify-content: center; align-items: center; }
-        .logo { height: 50px; } /* Adjust logo size as needed */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+        }
+        .hero-pattern {
+            background-color: #1a365d;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
     </style>
     <script>
         function toggleMenu() {
@@ -17,91 +26,148 @@
     </script>    
 </head>
 <body class="bg-white text-gray-800">
-
-    <nav class="bg-gray-800 text-white p-4 relative">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="flex items-center">
-                <img src="logo.png" alt="Logo" class="logo mr-3">
-                <span class="font-bold text-lg">The Independent Wolf</span>
-            </a>
-            <button class="lg:hidden" onclick="toggleMenu()">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-            <div id="navbar" class="hidden lg:flex flex-col lg:flex-row lg:items-center absolute lg:relative top-full right-0 bg-slate-800 lg:bg-transparent w-full lg:w-auto">
-                <a href="#about" class="px-2 py-1 hover:text-gray-300">About</a>
-                <a href="#services" class="px-2 py-1 hover:text-gray-300">Services</a>
-                <a href="#projects" class="px-2 py-1 hover:text-gray-300">Projects</a>
-                <a href="#contact" class="px-2 py-1 hover:text-gray-300">Contact</a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Logo" class="h-10 w-auto">
+                    <span class="font-bold text-xl text-slate-800">The Independent Wolf</span>
+                </a>
+                <button class="lg:hidden" onclick="toggleMenu()">
+                    <svg class="h-6 w-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <div id="navbar" class="hidden lg:flex absolute lg:relative top-full left-0 right-0 bg-white lg:bg-transparent w-full lg:w-auto mt-2 lg:mt-0 shadow-lg lg:shadow-none">
+                    <div class="flex flex-col lg:flex-row lg:items-center space-y-2 lg:space-y-0 lg:space-x-8 p-4 lg:p-0">
+                        <a href="#about" class="text-slate-600 hover:text-slate-900 font-medium">About</a>
+                        <a href="#services" class="text-slate-600 hover:text-slate-900 font-medium">Services</a>
+                        <a href="#projects" class="text-slate-600 hover:text-slate-900 font-medium">Projects</a>
+                        <a href="#contact" class="text-slate-600 hover:text-slate-900 font-medium">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- About Me Section -->
-    <section id="about" class="p-6 bg-white text-center">
-        <div class="container mx-auto w-full lg:w-2/5">
-            <h1 class="text-4xl font-bold text-slate-800 mb-4">About Me</h1>
-            <p class="text-lg mb-4">I bring over 10 years of experience in the software industry, working in variety of roles like backend and full-stack development, DevOps, cloud security, and systems/infrastructure engineering. This experience has given me a solid understanding of different tools and languages, and a practical approach to building applications that are robust, efficient, secure, and user-friendly.</p>
-            <!-- Add more content about yourself here -->
+    <!-- Hero Section -->
+    <section class="hero-pattern min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Software Engineer & Security Expert</h1>
+                <p class="text-xl text-blue-100 mb-8">Building robust, efficient, and secure applications</p>
+                <a href="#contact" class="inline-block bg-white text-slate-800 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-300">Get in Touch</a>
+            </div>
         </div>
     </section>
 
-    <!-- Services Offered Section -->
-    <section id="services" class="p-6 bg-white text-center">
-        <div class="container mx-auto flex justify-center">
-            <div>
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Services Offered</h2>
-                <ul class="list-disc text-left">
-                    <li>Custom Web Development</li>
-                    <li>Workflow and Infrastructure Automation</li>
-                    <li>Cloud Security Consulting (AWS, Azure)</li>
-                </ul>
+    <!-- About Me Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl font-bold text-slate-800 mb-8 text-center">About Me</h2>
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        I bring over 10 years of experience in the software industry, working in variety of roles like backend and full-stack development, DevOps, cloud security, and systems/infrastructure engineering. This experience has given me a solid understanding of different tools and languages, and a practical approach to building applications that are robust, efficient, secure, and user-friendly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-slate-800 mb-12 text-center">Services Offered</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Custom Web Development</h3>
+                    <p class="text-gray-600">Building modern, responsive web applications tailored to your needs.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Workflow Automation</h3>
+                    <p class="text-gray-600">Streamlining processes and infrastructure for maximum efficiency.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Cloud Security</h3>
+                    <p class="text-gray-600">Expert consulting for AWS and Azure cloud security solutions.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="p-6 bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-slate-800 mb-8 text-center">Projects</h2>
-            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-slate-800 mb-8 text-center">Projects</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
                 Most of my work has been building internal tools and solutions for corporations. I'm now expanding into personal projects and will update this section with more projects soon.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 <!-- Swiss Army Dev -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="aspect-video bg-gray-200 relative">
                         <img src="https://placehold.co/600x400/1a365d/ffffff?text=Swiss+Army+Dev" alt="Swiss Army Dev Preview" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Swiss Army Dev</h3>
                         <p class="text-gray-600 mb-4">A comprehensive developer toolkit website offering various coding utilities and resources.</p>
-                        <a href="https://swissarmydev.com" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">Visit Site →</a>
+                        <a href="https://swissarmydev.com" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                            Visit Site
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Distance by Jetpack -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="aspect-video bg-gray-200 relative">
                         <img src="https://placehold.co/600x400/1a365d/ffffff?text=Distance+by+Jetpack" alt="Distance by Jetpack Preview" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Distance by Jetpack</h3>
                         <p class="text-gray-600 mb-4">A distance calculation and route planning application for travelers and adventurers.</p>
-                        <a href="https://distancebyjetpack.com" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">Visit Site →</a>
+                        <a href="https://distancebyjetpack.com" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                            Visit Site
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Cybereus -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="aspect-video bg-gray-200 relative">
                         <img src="https://placehold.co/600x400/1a365d/ffffff?text=Cybereus" alt="Cybereus Preview" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Cybereus</h3>
                         <p class="text-gray-600 mb-4">A cybersecurity platform providing tools and resources for digital security.</p>
-                        <a href="https://cybereus.com" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">Visit Site →</a>
+                        <a href="https://cybereus.com" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                            Visit Site
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -109,12 +175,28 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="p-6 bg-white text-center">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-slate-800 mb-4">Contact</h2>
-            <p>If you want to hire me, you can email me at <a href="mailto:info@theindependentwolf.com" class="text-blue-500 hover:text-slate-800">info@theindependentwolf.com</a></p>
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-slate-800 mb-8">Get in Touch</h2>
+                <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                    <p class="text-lg text-gray-600 mb-6">Ready to start a project or have any questions?</p>
+                    <a href="mailto:info@theindependentwolf.com" class="inline-flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 w-full sm:w-auto">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="text-sm sm:text-base">info@theindependentwolf.com</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2024 The Independent Wolf. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
